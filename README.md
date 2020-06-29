@@ -23,7 +23,8 @@
 <p align="center">
   <a href="#rocket-sobre-o-desafio">Sobre o desafio</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#calendar-entrega">Entrega</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licença">Licença</a>
+  <a href="#memo-licença">Licença</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-licença">Adendo</a>
 </p>
 
 ## :rocket: Sobre o desafio
@@ -69,6 +70,19 @@ Esse desafio deve ser entregue a partir da plataforma Skylab, envie o link do re
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## :100: Onde fui além
+
+Mais do que fora pedido, resolvi modificar a renderização da lista de techs, para mostrar todas as techs escolhidas em cada repo em forma de array:
+```js
+              <View style={styles.techsContainer}>
+                {item.techs.map(tech => (
+                  <Text key={tech} style={styles.tech}>
+                    {tech}
+                  </Text>
+                ))}
+              </View>
+```
 
 ---
 
