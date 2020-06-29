@@ -12,18 +12,27 @@ import api from './services/api';
 
 
 export default function App() {
-  const [repositories, setrepositories] = useState([]);
+  const [repositories, setRepositories] = useState([]);
 
   useEffect(() => {
     api.get('repositories').then(response => {
-      setrepositories(response.data)
+      setRepositories(response.data)
     });
-  }, [handleLikeRepository]);
+  }, []);
 
   async function handleLikeRepository(id) {
-    await api.post(`repositories/${id}/like`).then(response => {
-      console.log(response);
+    const response = await api.post(`repositories/${id}/like`)
+
+    const updatedRepositories = repositories.map(repo => {
+      if (repo.id === id) {
+        repo.likes = response.data.likes;
+        return repo;
+      } else {
+        return repo;
+      }
     });
+
+    setRepositories(updatedRepositories);
   }
 
   return (
@@ -39,12 +48,11 @@ export default function App() {
               <Text style={styles.repository}>{item.title}</Text>
 
               <View style={styles.techsContainer}>
-                <Text style={styles.tech}>
-                  {item.techs}
-                </Text>
-                <Text style={styles.tech}>
-                  {item.techs}
-                </Text>
+                {item.techs.map(tech => (
+                  <Text key={tech} style={styles.tech}>
+                    {tech}
+                  </Text>
+                ))}
               </View>
 
               <View style={styles.likesContainer}>
